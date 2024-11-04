@@ -9,3 +9,6 @@ Installation:
 4. Press "Save" or "Save and Play" to apply the code.
 
 Enjoy!
+
+To-do:
+Fix the freezes that only happen in the Cyberspace.
