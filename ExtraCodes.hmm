@@ -1,0 +1,90 @@
+Patch "Fix Freezes on Windows 11 Computers with 8th or 9th Gen Intel CPUs" in "Fixes" by "Arthur Lopes" does 
+/*
+Disables the assembly instruction that causes the freezes and stutters experienced by those running the game on Windows 11 with 8th/9th generation Intel processors.
+
+*/
+{
+    WriteNop
+    (
+        /* 0x1503d8710 */
+        ScanSignature
+        (
+            "\xF0\x41\x0F\xBA\x68\x40\x00\x72\xF7\x49\x8B\x48\x28\x48\x85\xC9\x75\x07\x31\xC0\x41\x89\x40\x40",
+            "xxxxxxxxxxxxxxxxxxxxxxxx"
+        ),
+
+        7
+    );
+}
+
+Code "Short Hop" in "Gameplay" by "Weezley" does "Restores the Short Hop used in Past Boost Games"
+//
+    #lib "Time"
+    #lib "Sonic"
+    
+    #load "System.Numerics.dll"
+
+    using System.Numerics;
+
+    static float shortHopTimer = 0.1f;
+    static float jumpDown = 0.0f;
+    static bool isFullJump = false;
+    static bool isShortHop = false;
+//
+{
+    if (Sonic.Input.IsDown(Sonic.PlayerActionType.PlayerJump))
+    {
+        jumpDown += Time.GetDeltaTime();
+
+        if (Sonic.State.GetCurrentStateID() == Sonic.StateID.StateRecoveryJump && Sonic.State.GetPreviousStateID() == Sonic.StateID.StateJump && jumpDown >= shortHopTimer)
+        {
+            Sonic.State.SetState(Sonic.StateID.StateBounceJump)
+        }
+        else if (Sonic.State.GetCurrentStateID() == Sonic.StateID.StateJump && jumpDown < shortHopTimer)
+        {
+            Sonic.State.SetState(Sonic.StateID.StateRecoveryJump)
+        }
+    }
+    else
+    {
+        jumpDown = 0.0f;
+    }
+
+    if (Sonic.State.GetCurrentStateID() == Sonic.StateID.StateBounceJump && Sonic.State.GetPreviousStateID() == Sonic.StateID.StateRecoveryJump)
+    {
+    if (!isFullJump)
+    {
+        var kinematics = Sonic.Kinematics.Get();
+
+        if (kinematics == null)
+        return;
+
+        *kinematics.Velocity -= new Vector3(0, 5, 0);
+        isFullJump = true;
+    }  
+    }
+    else
+    {
+    isFullJump = false;
+    }
+
+    if (Sonic.State.GetCurrentStateID() == Sonic.StateID.StateRecoveryJump && Sonic.State.GetPreviousStateID() == Sonic.StateID.StateJump)
+    {
+    Sonic.Animation.SetAnimation("JUMP_UP");
+
+    if (!isShortHop)
+    {
+        var kinematics = Sonic.Kinematics.Get();
+
+        if (kinematics == null)
+        return;
+
+        *kinematics.Velocity -= new Vector3(0, 4, 0);
+        isShortHop = true;
+    }  
+    }
+    else
+    {
+    isShortHop = false;
+    }       
+}
