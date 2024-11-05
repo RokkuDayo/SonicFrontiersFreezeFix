@@ -1,6 +1,8 @@
 # Sonic Frontiers | Windows 11 Freeze Fix
 Solves freezing and stuttering when running the game on Windows 11 while paired with 8th or 9th-generation Intel CPUs.
 
+Their source seems to be two "lock bts" opcodes at 0x1503d8710 and 0x140c1df14, which are both lead into a jump loop. Not sure why these chips struggle with these.
+
 Installation:
 
 1. Set up HedgeModManager. You should already have this if you play on PC with mods.
