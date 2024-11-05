@@ -1,7 +1,7 @@
 # Sonic Frontiers | Windows 11 Freeze Fix
 Solves freezing and stuttering when running the game on Windows 11 while paired with 8th or 9th-generation Intel CPUs.
 
-Their source seems to be two "lock bts" opcodes at 0x1503d8710 and 0x140c1df14, which are both lead into a jump loop. Not sure why these chips struggle with these.
+Their source seems to be two "lock bts" opcodes at 0x1503d8710 and 0x140c1df14, which both lead into a jump loop. I'm not sure why these chips struggle with them. The second address is related to the freezes in Cyberspace and I haven't been able to get around it without the game crashing, so it's on the To-Do list for now. Stutters in the open world should be all fixed though.
 
 Installation:
 
@@ -13,4 +13,4 @@ Installation:
 Enjoy!
 
 To-do:
-Fix the freezes that only happen in the Cyberspace.
+Fix the freezes that only happen in Cyberspace.
