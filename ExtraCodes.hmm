@@ -1,4 +1,4 @@
-Patch "Fix Freezes on Windows 11 Computers with 8th or 9th Gen Intel CPUs" in "Fixes" by "Arthur Lopes & Lily (JJPTails)" does 
+Patch "Fix Freezes on Windows 11 Computers with 8th or 9th Gen Intel CPUs" in "Fixes" by "Arthur Lopes & Lily (Colon D)" does 
 /*
 Tweaks a handful of assembly functions that cause the freezes and stutters experienced by those running the game on Windows 11 with 8th/9th generation Intel processors.
 */
