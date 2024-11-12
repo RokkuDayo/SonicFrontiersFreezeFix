@@ -1,7 +1,7 @@
-# Sonic Frontiers | Windows 11 Freeze Fix
-Solves freezing and stuttering when running the game on Windows 11 while paired with 8th or 9th-generation Intel CPUs.
+# Sonic Frontiers | Freezing & Stuttering Fix
+Solves freezing and stuttering when running the game on certain hardware configurations, mainly on Windows 11 while paired with 8th or 9th-generation Intel CPUs though this has been reported on AMD CPUs and Windows 10 as well.
 
-Their source seems to be two "lock bts" opcodes at 0x1503d8710 and 0x140c1df14, both followed by a jump loop. This is what Intel VTune tells me at least, AMD uProf tells me it's the loops themselves that are causing the huge CPU times. I'm not sure why these chips struggle with them. The second address is related to the freezes in Cyberspace and I haven't been able to get around it without the game crashing, so it's on the To-Do list for now. Stutters in the open world should be all fixed though.
+The source of these freezes seems to be two "lock bts" opcodes at 0x1503d8710 and 0x140c1df14 which are called hundreds of times per second. 
 
 Installation:
 
@@ -10,7 +10,4 @@ Installation:
 3. Open HedgeModManager and go to the Codes tab. Then, expand the "Fixes" dropdown and check the box for the code called "Fix Freezes on Windows 11 Computers with 8th or 9th Gen Intel CPUs"
 4. Press "Save" or "Save and Play" to apply the code.
 
-Enjoy!
-
-To-do:
-Fix the freezes that only happen in Cyberspace.
+We've tested this for a few hours and nothing out of the ordinary happened but if you do stumble upon something wrong or a crash please report it on the issues tab.
