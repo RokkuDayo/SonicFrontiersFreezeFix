@@ -51,4 +51,52 @@ Tweaks a handful of assembly functions that cause the freezes and stutters exper
 
         0xEB
     );
+
+    WriteProtected<byte>
+    (
+        /* Cyberspace #4 | v1.41: 0x140C29C3A */
+        ScanSignature
+        (
+            "\x74\x1D\x41\xB8\x01\x00\x00\x00\xB2\x06\x48",
+            "xxxxxxxxxxx"
+        ),
+
+        0xEB
+    );
+
+    WriteNop
+    (
+         /* Cyberspace #5 | v1.41: 0x14EA6D785 */
+        ScanSignature
+        (
+            "\x44\x8A\x05\xD9\x94\xFD\xFE\x41\x80\xF0\x42\x44\x88\xC2\x45\x31\xC0\xE8\x95\x9E\x1B\xF2",
+            "xxxxxxxxxxxxxxxxxxxxxx"
+        ),
+
+        22
+    );
+
+    WriteProtected<byte>
+    (
+        /* Cyberspace #6 | v1.41: 0x14EA6CCEB */
+        ScanSignature
+        (
+            "\x0F\x85\xF6\x00\x00\x00\x45\x31\xC0\xB2\x09",
+            "xxxxxxxxxxx"
+        ),
+
+        new byte[] { 0xE9, 0xF7, 0x00, 0x00, 0x00, 0x90 }
+    );
+
+    WriteNop
+    (
+        /* Cyberspace #7 | v1.41: 0x140C19D70 */
+        ScanSignature
+        (
+            "\x45\x33\xC0\xB2\x07\xE9\xB6\xD8\x00\x00",
+            "xxxxxxxxxx"
+        ),
+
+        10
+    );
 }
